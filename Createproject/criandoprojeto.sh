@@ -6,4 +6,3 @@ terraform plan
 
 #aplicando as mudanças
 terraform apply
-
