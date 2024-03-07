@@ -34,13 +34,13 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "instancia01" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-  depends_on = [bucket1]
+  depends_on = [aws_s3_bucket.bucket1]
 }
 
 #Dependencia implicita
 resource "aws_eip" "teste"{
     instance = aws_instance.instancia01.id
-    domain = "vpcc"
+    domain = "vpc"
 }
 
 #Dependencia explicita, ver RECURSO: resource "aws_instance" "instancia01" {...}
