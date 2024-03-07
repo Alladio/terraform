@@ -31,11 +31,14 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "instancia01" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-
-  tags = {
-    Name = "HelloWorld"
-  }
 }
+
+#Dependencia implicita
+resource "aws_eip" "teste"{
+    instance = aws_instance.instancia01.id
+    domain = "vpcc"
+}
+
