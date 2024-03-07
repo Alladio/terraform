@@ -11,3 +11,5 @@ terraform apply
 #Vai pegar o arquivo terraform.tfstate como base para excluir os recursos
 terraform destroy
 
+#aplicando as mudanças + variavel
+terraform apply -var="aws_region=sa=east-1"
