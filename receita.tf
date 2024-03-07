@@ -34,13 +34,13 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "instancia01" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-  depends_on = [aws_s3_bucket.bucket1]
+  depends_on    = [aws_s3_bucket.bucket1]
 }
 
 #Dependencia implicita
 resource "aws_eip" "teste"{
-    instance = aws_instance.instancia01.id
-    domain = "vpc"
+    instance    = aws_instance.instancia01.id
+    domain      = "vpc"
 }
 
 #Dependencia explicita, ver RECURSO: resource "aws_instance" "instancia01" {...}
@@ -52,3 +52,29 @@ resource "aws_s3_bucket" "bucket1" {
     Environment = "Dev"
   }
 }   
+
+resource "aws_security_group" "security_group" {
+    name        = "allow_tls"
+    description = "Allow TLS inbound traffic and all outbound traffic"
+    #vpc_id      = aws_vpc.main.id
+    ingress{
+        description = "TLS from VPC"
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks = var.sg_cidrs
+        #cidr_blocks = ["191.177.187.214/32"]
+        #ipv6_cidr_blocks = []
+    }
+    
+    egress {
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+        #ipv6_cidr_blocks = ["::/0"]
+    }
+  tags = {
+    Name = "allow_tls"
+  }
+}
