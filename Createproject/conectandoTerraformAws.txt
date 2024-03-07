@@ -1,3 +1,6 @@
+#Não usar isso em produção
+#Somente para estudo
+
 1 - Crie no IAM as permissões para o usuário
 
 2 - Pegar o ID e chave de acesso e guardar
