@@ -3,3 +3,6 @@
 2 - Pegar o ID e chave de acesso e guardar
 
 3 - registry.terraform.io
+
+4 - Ver os detalhes da criação dos recusos no site (Tem muitos detalhes)
+
