@@ -34,6 +34,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "instancia01" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
+  depends_on = [bucket1]
 }
 
 #Dependencia implicita
@@ -42,3 +43,12 @@ resource "aws_eip" "teste"{
     domain = "vpcc"
 }
 
+#Dependencia explicita, ver RECURSO: resource "aws_instance" "instancia01" {...}
+resource "aws_s3_bucket" "bucket1" {
+  bucket = "my-tf-test-bucket-alladio"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}   
