@@ -32,7 +32,8 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "instancia01" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = lookup(var.amis, var.aws_region)
+  #ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
   depends_on    = [aws_s3_bucket.bucket1]
 }
