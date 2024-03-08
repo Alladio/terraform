@@ -32,10 +32,11 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "instancia01" {
-  ami           = lookup(var.amis, var.aws_region)
-  #ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
-  depends_on    = [aws_s3_bucket.bucket1]
+    #Variável tipo map
+    ami           = lookup(var.amis, var.aws_region)
+    #ami           = data.aws_ami.ubuntu.id
+    instance_type = "t3.micro"
+    depends_on    = [aws_s3_bucket.bucket1]
 }
 
 #Dependencia implicita
@@ -63,6 +64,7 @@ resource "aws_security_group" "security_group" {
         from_port   = 443
         to_port     = 443
         protocol    = "tcp"
+        #Variavel tipo lista
         cidr_blocks = var.sg_cidrs
         #cidr_blocks = ["191.177.187.214/32"]
         #ipv6_cidr_blocks = []
