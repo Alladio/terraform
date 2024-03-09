@@ -2,4 +2,4 @@
 .terraform/
 terraform.tfstate
 .terraform.*
-var.tf
+Projeto1/linux_amd64/
