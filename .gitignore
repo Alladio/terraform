@@ -3,3 +3,4 @@
 terraform.tfstate
 .terraform.*
 Projeto1/linux_amd64/
+var_passwords.tf

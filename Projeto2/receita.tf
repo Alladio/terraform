@@ -11,8 +11,8 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
+  access_key = varAccess.access_key
+  secret_key = varAccess.secret_key
 }
 
 data "aws_ami" "ubuntu" {
