@@ -11,8 +11,8 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = var.aws_region
-  access_key = varAccess.access_key
-  secret_key = varAccess.secret_key
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 module "vpc" {
@@ -37,10 +37,13 @@ module "vpc" {
 
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "5.6.1"
 
-  for_each = toset(["one", "two", "three"])
+  #more than one instance
+  #for_each = toset(["one", "two", "three"])
+  #name = "instance-${each.key}"
 
-  name = "instance-${each.key}"
+  name = "single-instance"
 
   instance_type          = "t2.micro"
   key_name               = "user1"
