@@ -1,13 +1,13 @@
 data "aws_ami" "amazon_linux" {
-  executable_users = ["self"]
+  #executable_users = ["self"]
   most_recent      = true
-  name_regex       = "^myami-\\d{3}"
+  #name_regex       = "^myami-\\d{3}"
   owners           = ["amazon"]
 
   filter {
     name   = "name"
     values = [
-        "myami-*"
+        "amzn-ami-hvm-*-x86_64-gp2"
     ]
   }
 

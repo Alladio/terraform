@@ -1,6 +1,6 @@
 .terraform.lock.hcl
 .terraform/
-terraform.tfstate
+# terraform.tfstate
 .terraform.*
 Projeto1/linux_amd64/
 Createproject/*
